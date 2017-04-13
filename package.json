@@ -10,6 +10,7 @@
     "bower": "^1.7.7",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.5.2",
+    "jasmine-data-provider": "^2.2.0",
     "karma": "^1.5.0",
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.1.0",
@@ -18,17 +19,12 @@
   },
   "scripts": {
     "postinstall": "bower install",
-
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
-
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1 ./app",
-
     "pretest": "npm install",
-
     "test": "karma start test/karma.conf.js",
     "test-single-run": "karma start test/karma.conf.js --single-run"
-
   }
 }
