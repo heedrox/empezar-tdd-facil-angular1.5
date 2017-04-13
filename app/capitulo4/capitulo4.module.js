@@ -8,6 +8,9 @@ angular.module('myApp.capitulo4', ['ngRoute'])
         });
     }])
 
-    .controller('Capitulo4Ctrl', [function() {
+    .controller('Capitulo4Ctrl', ['$scope', function($scope) {
+
+        $scope.obtenerSalida = function() {
+        };
 
     }]);
