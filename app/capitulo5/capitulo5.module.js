@@ -11,8 +11,10 @@ angular.module('myApp.capitulo5', ['ngRoute'])
     .controller('Capitulo5Ctrl', ['$scope', function($scope) {
 
         $scope.form = {};
-        $scope.mostrarValidacion = true;
+        $scope.mostrarValidacion = false;
         $scope.textoValidacion = "email";
 
-        $scope.textoValidacion = $scope.form.numMensualidades;
+        $scope.enviarFormulario = function() {
+            $scope.mostrarValidacion = true;
+        }
     }]);
