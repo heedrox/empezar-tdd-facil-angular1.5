@@ -1,1 +1,48 @@
-<p>Capítulo 5.</p>
+<div class="page-header"><h1>Bienvenido/a</h1></div>
+<div class="row" id="mensajeValidacion" ng-show="mostrarValidacion">
+    <div class="col-xs-12">
+        <div class="alert alert-danger">
+            Revisa el campo: {{ textoValidacion }}</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <form>
+            <div class="form-group">
+                <label for="email">Dirección de email</label>
+                <input ng-bind="form.email" name="email" type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de nacimiento</label>
+                <input ng-bind="form.fechaNacimiento" name="fechaNacimiento" type="date" class="form-control" id="fechaNacimiento">
+            </div>
+            <div class="form-group">
+                <label for="paquete">Selecciona el paquete a adquirir</label>
+                <select ng-bind="form.paquete" name="paquete" class="form-control" id="paquete">
+                    <option value=""> -- Selecciona -- </option>
+                    <option value="BASICO">Básico (50 eur)</option>
+                    <option value="AVANZADO">Avanzado (200 eur)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numMensualidades">Número de mensualidades a hacer el pago</label>
+                <input ng-bind="form.numMensualidades" name="numMensualidades" class="form-control" type="number" min="1" max="10" id="numMensualidades">
+                <p class="help-block">Pago mensual: <span id="pagoMensual"></span></p>
+            </div>
+            <div class="form-group">
+                <label for="numMensualidades">Tarjeta VISA</label>
+                <input ng-bind="form.tarjetaVisa"name="tarjetaVisa" class="form-control" type="text" id="tarjetaVisa">
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+                    <input ng-bind="form.condiciones" name="condiciones" type="checkbox" val="1" id="condiciones"> Acepto las condiciones legales
+                </label>
+            </div>
+            <button type="button" onclick="enviarFormulario()" class="btn btn-default">Enviar</button>
+        </form>
+
+    </div>
+</div>
