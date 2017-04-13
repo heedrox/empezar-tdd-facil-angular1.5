@@ -8,9 +8,20 @@ angular.module('myApp.capitulo4', ['ngRoute'])
         });
     }])
 
-    .controller('Capitulo4Ctrl', ['$scope', function($scope) {
+    .controller('Capitulo4Ctrl', ['$scope', 'CalculoImportes', function($scope, CalculoImportes) {
 
+        $scope.entrada = JSON.stringify(obtenerJsonEntrada());
+        $scope.salida = "";
         $scope.obtenerSalida = function() {
+            $scope.salida = JSON.stringify(CalculoImportes.calcularImportes(JSON.parse($scope.entrada)));
         };
+
+        function obtenerJsonEntrada() {
+            return [
+                { "id": 1, "title": "Maniac Mansion Videojuego", "ctd": 5, "pvp": 40 },
+                { "id": 2, "title": "Consola XBOX Zero", "ctd": 1, "pvp": 300 },
+                { "id": 3, "title": "Prison Break Temporada 76", "ctd": 2, "pvp": 15 }
+            ];
+        }
 
     }]);
