@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-xs-12">
         <p>Entrada</p>
-        <textarea rows="6" cols="40" id="entrada" class="form-control">
+        <textarea rows="6" cols="40" id="entrada" class="form-control" ng-bind="entrada">
 [
 { "id": 1, "title": "Maniac Mansion Videojuego", "ctd": 5, "pvp": 40 },
 { "id": 2, "title": "Consola XBOX Zero", "ctd": 1, "pvp": 300 },
@@ -12,7 +12,7 @@
             </textarea>
         <p><button class="btn btn-primary" ng-click="obtenerSalida()">Calcular</button></p>
         <p>Salida</p>
-        <textarea rows="6" cols="40" id="salida" class="form-control">
+        <textarea rows="6" cols="40" id="salida" class="form-control" ng-bind="salida">
             </textarea>
 
     </div>
