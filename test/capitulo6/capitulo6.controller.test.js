@@ -1,12 +1,13 @@
 describe("Capitulo6Ctrl hace llamadas AJAX a api/capitulo6 con los datos transformados", function() {
-    var $rootScope, $controller, $scope, RemoteService;
+    var $rootScope, $controller, $scope, RemoteService, $q;
 
     beforeEach(module('myApp.capitulo6'));
 
-    beforeEach(inject(function (_$controller_, _$rootScope_, _RemoteService_) {
+    beforeEach(inject(function (_$controller_, _$rootScope_, _RemoteService_, _$q_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         RemoteService = _RemoteService_;
+        $q = _$q_;
     }));
 
     beforeEach(function() {
@@ -17,7 +18,7 @@ describe("Capitulo6Ctrl hace llamadas AJAX a api/capitulo6 con los datos transfo
     });
 
     it("llama al servidor con la api api/capitulo6", function() {
-        spyOn(RemoteService, "post");
+        spyOn(RemoteService, "post").and.returnValue(unaPromesaConValor({}));
 
         $scope.enviarFormulario();
 
@@ -25,7 +26,7 @@ describe("Capitulo6Ctrl hace llamadas AJAX a api/capitulo6 con los datos transfo
     });
 
     it("envía el email", function() {
-        spyOn(RemoteService, "post");
+        spyOn(RemoteService, "post").and.returnValue(unaPromesaConValor({}));
         $scope.form.email = "unemail@cualquiera.com";
 
         $scope.enviarFormulario();
@@ -40,7 +41,7 @@ describe("Capitulo6Ctrl hace llamadas AJAX a api/capitulo6 con los datos transfo
 
     using(fechas, function(caso) {
         it("envía la fecha de nacimiento como dateBirth en formato YYYYMMDD para el caso "+caso.dateBirth, function() {
-            spyOn(RemoteService, "post");
+            spyOn(RemoteService, "post").and.returnValue(unaPromesaConValor({}));
             $scope.form.fechaNacimiento = caso.fechaNacimiento;
 
             $scope.enviarFormulario();
@@ -57,7 +58,7 @@ describe("Capitulo6Ctrl hace llamadas AJAX a api/capitulo6 con los datos transfo
 
     using(paquetes, function(caso) {
         it("envía el paquete traducido por 1 o 2 - "+caso.package, function() {
-            spyOn(RemoteService, "post");
+            spyOn(RemoteService, "post").and.returnValue(unaPromesaConValor({}));
             $scope.form.paquete = caso.paquete;
 
             $scope.enviarFormulario();
@@ -78,7 +79,7 @@ describe("Capitulo6Ctrl hace llamadas AJAX a api/capitulo6 con los datos transfo
 
     using(mensualidades, function(caso) {
         it("envía el pago mensual (monthPayment) - "+caso.monthPayment, function() {
-            spyOn(RemoteService, "post");
+            spyOn(RemoteService, "post").and.returnValue(unaPromesaConValor({}));
             $scope.form.paquete = caso.paquete;
             $scope.form.numMensualidades = caso.numMensualidades;
 
@@ -88,6 +89,20 @@ describe("Capitulo6Ctrl hace llamadas AJAX a api/capitulo6 con los datos transfo
         });
 
     });
+
+    it("escribe el resultado de la llamada en $scope.resultadoServidor", function() {
+        spyOn(RemoteService, "post").and.returnValue(unaPromesaConValor({ 'un': 'json', 'de': 'ejemplo'}));
+
+        $scope.enviarFormulario();
+        $rootScope.$apply();
+
+        expect($scope.resultadoServidor).toBe('{"un":"json","de":"ejemplo"}');
+    });
+
+    function unaPromesaConValor(x) {
+        return $q.resolve(x);
+    }
+
 
 
 });

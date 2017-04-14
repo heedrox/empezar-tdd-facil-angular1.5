@@ -12,7 +12,10 @@ angular.module('myApp.capitulo6', ['ngRoute', 'myApp.lib'])
 
         $scope.enviarFormulario = function () {
             var parametros = construirParametros();
-            RemoteService.post("/api/capitulo6", parametros);
+            RemoteService.post("/api/capitulo6", parametros)
+                .then(function(result) {
+                    $scope.resultadoServidor = JSON.stringify(result);
+                });
         };
 
         function construirParametros() {
