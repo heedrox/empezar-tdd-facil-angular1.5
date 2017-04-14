@@ -11,7 +11,11 @@
         };
 
         function post(url, params) {
-            return $http.post(ENDPOINT+url, params);
+            return $http.post(ENDPOINT+url, params).then(extractData);
+
+            function extractData(x) {
+                return x.data;
+            }
         }
     }
 })();
