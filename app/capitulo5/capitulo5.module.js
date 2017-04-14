@@ -13,14 +13,37 @@ angular.module('myApp.capitulo5', ['ngRoute'])
         $scope.form = {};
         $scope.mostrarValidacion = false;
 
-        $scope.enviarFormulario = function() {
-            $scope.mostrarValidacion = false;
-            if (!$scope.form.email) {
-                $scope.textoValidacion = "email";
-                $scope.mostrarValidacion = true;
-            } else if (!$scope.form.fechaNacimiento) {
-                $scope.textoValidacion = "fechaNacimiento";
-                $scope.mostrarValidacion = true;
+        $scope.enviarFormulario = enviarFormulario;
+
+        function enviarFormulario() {
+            var camposAValidar = ["email", "fechaNacimiento", "paquete", "numMensualidades", "tarjetaVisa"];
+            var campoErroneo = validarFormulario($scope.form, camposAValidar);
+            campoErroneo = campoErroneo!==""?campoErroneo:validarCondiciones($scope.form.condiciones);
+            procesarCampoErroneo(campoErroneo);
+
+            function procesarCampoErroneo(campoErroneo) {
+                if (campoErroneo === "") {
+                    $scope.mostrarValidacion=false;
+                } else {
+                    $scope.mostrarValidacion=true;
+                    $scope.textoValidacion=campoErroneo;
+                }
             }
+
+            function validarCondiciones(ischecked) {
+                return ischecked?"":"condiciones";
+            }
+
         }
+
+        function validarFormulario(objForm, campos) {
+            for (var a = 0;a<campos.length;a++) {
+                var valorCampo = objForm[campos[a]];
+                if (!valorCampo) {
+                    return campos[a];
+                }
+            }
+            return "";
+        }
+
     }]);

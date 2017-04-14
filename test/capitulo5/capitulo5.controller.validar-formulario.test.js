@@ -25,7 +25,7 @@ describe("Capitulo5Ctrl valida el formulario del capitulo 5", function() {
     });
 
     describe("validación incorrecta", function() {
-        var camposQueCausanValidacionIncorrecta = [ "email", "fechaNacimiento"];
+        var camposQueCausanValidacionIncorrecta = [ "email", "fechaNacimiento", "paquete", "numMensualidades", "tarjetaVisa"];
 
         using(camposQueCausanValidacionIncorrecta, function(campo) {
             it("muestra mensaje error si "+campo+" no rellenado", function() {
@@ -39,9 +39,24 @@ describe("Capitulo5Ctrl valida el formulario del capitulo 5", function() {
             });
         });
 
+        it("muestra mensaje error si el checkbox de condiciones no está chequeado", function() {
+            dadoUnFormularioRellenadoCorrectamente($scope);
+            $scope.form.condiciones = false;
+
+            $scope.enviarFormulario();
+
+            expect($scope.mostrarValidacion).toBeTruthy();
+            expect($scope.textoValidacion).toBe("condiciones");
+        });
+
+
     });
     function dadoUnFormularioRellenadoCorrectamente($scope) {
         $scope.form.email = "unemail@cualquiera.com";
         $scope.form.fechaNacimiento = new Date();
+        $scope.form.paquete = "BASICO";
+        $scope.form.numMensualidades = 12;
+        $scope.form.tarjetaVisa = "1234123412341234";
+        $scope.form.condiciones = true;
     }
 });
