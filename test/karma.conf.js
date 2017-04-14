@@ -10,6 +10,8 @@ module.exports = function(config) {
             'app/bower_components/angular-mocks/angular-mocks.js',
             'node_modules/jasmine-data-provider/src/index.js',
             'app/index/**/*.js',
+            'app/lib/lib.module.js',
+            'app/lib/*.js',
             'app/capitulo*/**/*module*.js',
             'app/capitulo*/**/*.js',
             'test/**/*.js'
