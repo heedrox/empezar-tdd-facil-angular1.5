@@ -4,6 +4,7 @@
 angular.module('myApp', [
     'ngRoute',
     'myApp.index',
+    'myApp.lib',
     'myApp.capitulo4',
     'myApp.capitulo5',
     'myApp.capitulo6'

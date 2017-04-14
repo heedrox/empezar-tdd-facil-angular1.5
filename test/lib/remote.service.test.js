@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 describe('RemoteService', function() {
@@ -24,3 +25,4 @@ describe('RemoteService', function() {
     });
 
 });
+*/
