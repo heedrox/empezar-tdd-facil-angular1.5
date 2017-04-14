@@ -8,6 +8,7 @@ module.exports = function(config) {
             'app/bower_components/angular/angular.js',
             'app/bower_components/angular-route/angular-route.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
+            'node_modules/jasmine-data-provider/src/index.js',
             'app/index/**/*.js',
             'app/capitulo*/**/*module*.js',
             'app/capitulo*/**/*.js',
