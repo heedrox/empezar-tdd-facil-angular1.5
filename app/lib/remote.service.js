@@ -3,7 +3,13 @@
         .service("RemoteService", [ '$http', RemoteService ] );
 
     function RemoteService($http) {
-        return {};
+        return {
+            post: post
+        };
+
+        function post(url, params) {
+            return $http.post(url, params);
+        }
     }
 })();
 
