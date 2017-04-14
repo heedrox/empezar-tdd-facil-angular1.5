@@ -1,8 +1,8 @@
 (function() {
     angular.module('myApp.lib')
-        .service("RemoteService", [ '$http', RemoteService ] );
+        .service("RemoteService", [ '$http', '$httpParamSerializer', RemoteService ] );
 
-    function RemoteService($http) {
+    function RemoteService($http, $httpParamSerializer) {
 
         var ENDPOINT = "http://localhost:8888";
 
@@ -11,7 +11,12 @@
         };
 
         function post(url, params) {
-            return $http.post(ENDPOINT+url, params).then(extractData);
+            return $http({
+                method: 'POST',
+                url: ENDPOINT + url,
+                data: $httpParamSerializer(params),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(extractData);
 
             function extractData(x) {
                 return x.data;
