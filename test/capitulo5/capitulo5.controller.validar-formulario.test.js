@@ -27,7 +27,7 @@ describe("Capitulo5Ctrl valida el formulario del capitulo 5", function() {
     describe("validación incorrecta", function() {
         var camposQueCausanValidacionIncorrecta = [ "email", "fechaNacimiento"];
 
-        camposQueCausanValidacionIncorrecta.forEach(function(campo) {
+        using(camposQueCausanValidacionIncorrecta, function(campo) {
             it("muestra mensaje error si "+campo+" no rellenado", function() {
                 dadoUnFormularioRellenadoCorrectamente($scope);
                 $scope.form[campo] = null;
