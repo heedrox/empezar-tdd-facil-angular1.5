@@ -12,9 +12,15 @@ angular.module('myApp.capitulo5', ['ngRoute'])
 
         $scope.form = {};
         $scope.mostrarValidacion = false;
-        $scope.textoValidacion = "email";
 
         $scope.enviarFormulario = function() {
-            $scope.mostrarValidacion = true;
+            $scope.mostrarValidacion = false;
+            if (!$scope.form.email) {
+                $scope.textoValidacion = "email";
+                $scope.mostrarValidacion = true;
+            } else if (!$scope.form.fechaNacimiento) {
+                $scope.textoValidacion = "fechaNacimiento";
+                $scope.mostrarValidacion = true;
+            }
         }
     }]);
